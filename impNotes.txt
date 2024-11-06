@@ -1,0 +1,39 @@
+API--> Application Programming Interface, is used to making connection from frontend to backend.
+
+$connect=mysqli_connect("hostname","username(bydefault is root)","password(bydefault blank)","database name")
+$connect=mysqli_connect("localhost","root","","voting")
+
+mysqli_connect("localhost", "root", "", "voting"):
+
+mysqli_connect is a function that attempts to establish a connection to a MySQL database.
+"localhost": This parameter specifies the hostname where the MySQL server is running. In this case, it's set to "localhost", meaning it's running on the same server as the PHP code.
+"root": This is the MySQL username. "root" is the default administrative user for MySQL.
+"" (empty string): This is the password for the MySQL user. If the password for the root user is empty (as is common in local development environments), it can be left as an empty string.
+"voting": This is the name of the database that the PHP script is trying to connect to. The database must exist on the MySQL server, or the connection will fail.
+or die("connection failed! ❌"):
+
+The or die() part is a conditional statement that triggers if mysqli_connect fails to establish a connection.
+If mysqli_connect fails (e.g., due to incorrect credentials or the database server being down), it returns false, and the code inside die() will execute.
+"connection failed! ❌": This message will display on the webpage if the connection attempt fails, letting the user know something went wrong.
+
+=======================================================================================================================================================================
+To make your database connection work on a remote server (or for a live website), you need to replace "localhost" with the IP address or domain name of your remote database server. 
+Here’s how you can adjust the code:
+
+$connect = mysqli_connect("server_ip_or_domain", "username", "password", "database_name") or die("connection failed! ❌");
+
+Here's a breakdown of what you should replace:
+
+"server_ip_or_domain": Replace this with the IP address or domain name of the server hosting your MySQL database. For example, if the server’s IP is 192.168.1.100, use "192.168.1.100". If the server is hosted with a domain, like "db.example.com", use that instead.
+
+"username" and "password": Enter the username and password that you use to connect to the database on the remote server. Make sure this user has the appropriate permissions on the server to access the specified database.
+
+"database_name": Replace this with the name of your database on the remote server (in this case, it would be "voting" if your database has the same name there).
+
+==================== DATA RECEVING/SENDING METHOD=========================
+GET:- Expose the data in url;
+POST:- Not expose/disply data securely send the data.
+==========================================================================
+ include("connect.php"); 
+The code include("connect.php"); is used in PHP to import and run the code in the connect.php file within the current script. This allows you to separate reusable code, such as database connection logic, into a different file and then include it wherever needed.
+
